@@ -1,40 +1,34 @@
-import React from 'react'
+﻿import React from 'react'
 import { useAppContext } from '../context/AppContext'
 import { useState, useEffect } from 'react'
 import { assets } from '../assets/assets'
+import Message from './Message'
 
 function ChatBox() {
-  const {selectedChat, theme} = useAppContext();
-  const [messages,setMessages] = useState([]);
-  const [loading,setLoading] = useState(false);
+  const { selectedChat, theme } = useAppContext()
+  const [messages, setMessages] = useState([])
 
   useEffect(() => {
-    if(selectedChat) {
-      setMessages(selectedChat.messages);
+    if (selectedChat) {
+      setMessages(selectedChat.messages || [])
     }
-  }, [selectedChat]);
+  }, [selectedChat])
 
-  
   return (
-    <>
     <div className='flex-1 flex flex-col justify-between m-5 md:m-10 xl:mx-30 max-md:mt-14 2xl:pr-40'>
-      {/* Chat Messages */}
       <div className='flex-1 mb-5 overflow-y-scroll'>
-        {messages.length===0 && (
+        {messages.length === 0 && (
           <div className='h-full flex flex-1 justify-center flex-col items-center gap-2 text-primary'>
-            <img src={theme === 'dark' ? assets.logo_full : assets.logo_full_dark} alt='' className='w-full max-w-56 sm:max-w-68'/>
+            <img src={theme === 'dark' ? assets.logo_full : assets.logo_full_dark} alt='' className='w-full max-w-56 sm:max-w-68' />
             <p className='mt-5 text-4xl sm:text-6xl text-center text-gray-400 dark:text-white '>Ask me anything.</p>
-
-        </div>
+          </div>
         )}
-        {messages.map((message, index) =>    }
 
-        
+        {messages.map((message, index) => (
+          <Message key={`${message.timestamp || index}-${index}`} message={message} />
+        ))}
       </div>
-
-
     </div>
-    </>
   )
 }
 
