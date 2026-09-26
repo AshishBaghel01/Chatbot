@@ -11,3 +11,10 @@
 .reset-tw :not(pre):not(code){
   all: revert;
 }
+
+.loader div:nth-child(1) {
+  animation-delay: 0.2s;
+}
+.loader div:nth-child(1) {
+  animation-delay: 0.4s;
+}

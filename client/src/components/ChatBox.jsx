@@ -7,6 +7,9 @@ import Message from './Message'
 function ChatBox() {
   const { selectedChat, theme } = useAppContext()
   const [messages, setMessages] = useState([])
+  const [loading, setLoading] = useState(false)
+  
+
 
   useEffect(() => {
     if (selectedChat) {
@@ -27,7 +30,23 @@ function ChatBox() {
         {messages.map((message, index) => (
           <Message key={`${message.timestamp || index}-${index}`} message={message} />
         ))}
+        {/*Three dots loader*/}
+        {loading && <div className='loader flex items-center gap-1.5'>
+               <div className='w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce dark:bg-white'></div>
+                <div className='w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce dark:bg-white'></div>
+                <div className='w-1.5 h-1.5 rounded-full bg-gray-500 animate-bounce dark:bg-white'></div>
+          </div>}
       </div>
+      {/*prompt input box*/}
+      <form onSubmit={onSubmit} className='bg-primary/20 dark:bg-[#583C79]/30 border border-primary dark:border-[#80609F]/20
+      rounded-full w-full max-w-2xl p-3 pl-4 max-auto flex gap-4 item-center'>
+          <select onChange={(e)=>setMode(e.target.value)} vlaue={mode} className='text-sm pl-3 pr-2 outline-none'>
+            <option className='dark:bg-purple-900' value="text">Text</option>
+            <option className='dark:bg-purple-900' value="image">Image</option>
+          </select>
+          <input/>
+
+      </form>
     </div>
   )
 }

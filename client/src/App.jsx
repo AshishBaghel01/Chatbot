@@ -7,6 +7,7 @@ import { Routes, Route } from 'react-router-dom'
 import { useState } from 'react'
 import { assets } from './assets/assets'
 import './assets/prism.css'
+import './assets/prism.css'
 
 function App() {
 
