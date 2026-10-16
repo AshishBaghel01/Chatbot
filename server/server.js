@@ -1,4 +1,4 @@
-import express from 'events';
+import express from 'express';
 immport cors from 'cors';
 import dotenv from 'dotenv';
 
